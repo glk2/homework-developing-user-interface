@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/ui/menu">
+
+    <menu id="application" caption="msg://com.sample.airtickets/menu.application" insertBefore="administration">
+        <menu id="referenceData" caption="msg://com.sample.airtickets/menu_config.referenceData" expanded="true"
+              icon="BARS">
+            <item screen="TicketReservationScreen"
+                  caption="msg://com.sample.airtickets.screen.ticketreservation/ticketReservationScreen.caption"
+                  icon="BINOCULARS"/>
+            <item screen="Airline.browse" caption="msg://com.sample.airtickets.screen.airline/airlineBrowse.menu"/>
+            <item screen="Airport.browse" caption="msg://com.sample.airtickets.screen.airport/airportBrowse.menu"/>
+            <item screen="Flight.browse" caption="msg://com.sample.airtickets.screen.flight/flightBrowse.menu"/>
+        </menu>
+        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+        <item screen="User.browse" caption="msg://com.sample.airtickets.screen.user/UserBrowse.caption"/>
+        <item screen="Ticket.browse1" caption="msg://com.sample.airtickets.screen.ticket.ticket/ticketBrowse1.menu"/>
+    </menu>
+
+</menu-config>

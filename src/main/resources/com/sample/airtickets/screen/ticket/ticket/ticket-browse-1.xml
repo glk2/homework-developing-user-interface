@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://ticketBrowse1.caption"
+        focusComponent="form">
+    <data readOnly="true">
+        <instance id="ticketDc"
+                  class="com.sample.airtickets.entity.Ticket">
+            <fetchPlan extends="_base">
+                <property fetchPlan="_base" name="flight">
+                    <property fetchPlan="_base" name="fromAirport"/>
+                    <property fetchPlan="_base" name="toAirport"/>
+                    <property fetchPlan="_base" name="airline"/>
+                </property>
+            </fetchPlan>
+            <loader id="ticketDl"/>
+        </instance>
+
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="AUTO"
+                width="AUTO"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="ticketDc">
+            <column width="350px">
+
+                <textField id="passengerNameField" property="passengerName" editable="false"/>
+                <textField id="passportNumberField" property="passportNumber" editable="false"/>
+                <textField id="telephoneField" property="telephone" editable="false"/>
+                <textField id="reservationIdField" property="reservationId" editable="false"/>
+                <textField id="flightField" property="flight" editable="false"/>
+
+                <textField id="fromAirport" property="flight.fromAirport" editable="false"/>
+                <textField id="toAirport" property="flight.toAirport" editable="false"/>
+                <textField id="airline" property="flight.airline" editable="false"/>
+                <textField id="takeOffDate" property="flight.takeOffDate" editable="false"/>
+            </column>
+        </form>
+
+        <hbox id="editActions" spacing="true">
+            <button id="closeBtn" action="windowClose" caption="Close"/>
+        </hbox>
+    </layout>
+
+</window>

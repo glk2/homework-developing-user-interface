@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://ticketReservationScreen.caption">
+
+    <data readOnly="true">
+        <collection id="flightsDc"
+                    class="com.sample.airtickets.entity.Flight">
+            <fetchPlan extends="_base">
+                <property name="fromAirport" fetchPlan="_base"/>
+                <property name="toAirport" fetchPlan="_base"/>
+                <property name="airline" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="flightsDl">
+                <query>
+                    <![CDATA[select e from Flight e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="airportDc"
+                    class="com.sample.airtickets.entity.Airport">
+            <fetchPlan extends="_base"/>
+            <loader id="airportDl">
+                <query>
+                    <![CDATA[select a from Airport a order by a.name]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+
+    <layout expand="flightsTable">
+
+        <groupBox orientation="horizontal" spacing="true" caption="msg://groupBox.caption">
+
+            <entityComboBox id="fromAirportField" caption="fromAirport" property="fromAirport"
+                            optionsContainer="airportDc"/>
+            <entityComboBox id="toAirportField" caption="toAirport" property="toAirport"
+                            optionsContainer="airportDc"/>
+            <dateField id="dateField"
+                       caption="msg://dateField" datatype="localDate" dateFormat="MM/yy"/>
+            <button id="searchBtn"
+                    caption="msg://showValueBtn"/>
+
+        </groupBox>
+
+        <progressBar id="progressBar" indeterminate="true" width="100%" visible="false"/>
+
+
+        <groupTable id="flightsTable"
+                    width="100%"
+                    dataContainer="flightsDc">
+            <columns>
+                <column id="number"/>
+                <column id="fromAirport"/>
+                <column id="toAirport"/>
+                <column id="airline"/>
+                <column id="takeOffDate"/>
+                <column caption="Actions" id="linkBtn"/>
+            </columns>
+            <simplePagination/>
+        </groupTable>
+
+
+    </layout>
+</window>
